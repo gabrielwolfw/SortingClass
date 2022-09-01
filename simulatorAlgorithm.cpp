@@ -7,6 +7,28 @@
 using namespace std;
 
 
+class pagedArray{
+    int frames;
+    int framesUsed;
+    int faults;
+    vector<int> pages;
+    vector<int> listFaults;
+    fstream fileObj;
+
+    public:
+    pagedArray();
+};
+
+pagedArray::pagedArray(){
+    int frames = 0;
+    int framesUsed = 0;
+    
+    fileObj >> frames;
+    if( frames > framesUsed){
+        pages.push_back(framesUsed);
+    }
+}
+
 //Part of sorting algorithm quicksort
 int partition(int arr[], int low, int high, int pivot){
 	int PIndex = low;
@@ -26,7 +48,7 @@ int partition(int arr[], int low, int high, int pivot){
 	return PIndex;
 }
 
-//Tomando de: 
+//Tomando de: https://www.geeksforgeeks.org/quick-sort/
 void quicksorting(int arr[], int low,int high){
     if(low < high){
         int pivot = arr[high];
@@ -40,6 +62,8 @@ void quicksorting(int arr[], int low,int high){
     }
 }
 
+
+//Tomando de: https://www.geeksforgeeks.org/insertion-sort/
 void insertionSorting(int arr[], int n){
         int i, key, j; 
     for (i = 1; i < n; i++)
@@ -65,6 +89,7 @@ void swap(int *xp, int *yp)
     *yp = temp;
 }
 
+//Tomado de https://www.geeksforgeeks.org/selection-sort/
 void selectionSorting(int arr[], int n){
     int i, j, min_idx;
  
@@ -101,8 +126,13 @@ void evaluate(string algorithmMode){
 
 
 int main(){
+    int arr[] = {10, 7, 8, 9, 1, 5}; 
+    int n = sizeof(arr) / sizeof(arr[0]);
     string algorithmMode;
     evaluate(algorithmMode);
+    insertionSorting(arr, n);
+    quicksorting(arr,0,n - 1);
+    selectionSorting(arr,n);
     return 1;
     
 }
